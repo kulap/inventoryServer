@@ -1,5 +1,7 @@
 package com.inventory.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //knistane
@@ -23,9 +25,14 @@ public class InventoryService {
 	}
 	//knistane-sell
 	//knistane-purchase
-		public String makePurchaseEntry(Inventory inventory){
-			return inventoryDao.makePurchaseEntry(inventory);
-		}
+	public String makePurchaseEntry(Inventory inventory){
+		return inventoryDao.makePurchaseEntry(inventory);
+	}
 	//knistane-purchase
+	//knistane-fetch product details
+	public List<Product> fetchProductEntry(){
+		return inventoryDao.fetchProductEntry();
+	}
+	//knistane-fetch product details
 
 }

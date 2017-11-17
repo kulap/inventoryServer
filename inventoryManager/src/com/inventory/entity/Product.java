@@ -165,11 +165,17 @@ public class Product {
     public void setCreatedDttm() {
         this.createdDttm = dtf.format(now);
     }
+    public void setCreatedDttm(String createdDttm) {
+        this.createdDttm = createdDttm;
+    }
 
     public String getModifiedDttm() {
         return modifiedDttm;
     }
 
+    public void setModifiedDttm(String modifiedDttm) {
+        this.modifiedDttm = modifiedDttm;
+    }
     public void setModifiedDttm() {
         this.modifiedDttm = dtf.format(now);
     }
@@ -197,4 +203,7 @@ public class Product {
     public void setMinimumQuantity(String minimumQuantity) {
         this.minimumQuantity = minimumQuantity;
     }
+    public String toString(){//overriding the toString() method  
+    	  return productId+" "+oemId+" "+serialNumber+" "+productName+" "+category+" "+partNumber+" "+mrp+" "+sellingPrice+" "+sellingDiscount+" "+purchasePrice+" "+purchaseDiscount+" "+description+" "+specification+" "+warranty+" "+createdDttm+" "+modifiedDttm+" "+image+" "+localReferenceCode+" "+minimumQuantity;
+    	  }  
 }

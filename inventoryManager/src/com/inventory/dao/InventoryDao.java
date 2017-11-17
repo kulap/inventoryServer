@@ -1,5 +1,7 @@
 package com.inventory.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -36,11 +38,19 @@ public class InventoryDao {
 	//knistane-sell
 	
 	//knistane-purchase
-		public String makePurchaseEntry(Inventory inventory){
-			String query = "INSERT INTO INVENTORYDB.TABLE_X_PURCHASE (x_part_number, x_purchase_count,x_last_updated_time) VALUES (?,?,?)";
-			int result = getJdbcTemplate().update(query, inventory.getPartNumber(),inventory.getPurchaseCount(),inventory.getLastUpdatedTime());
-			return result > 0?"SUCCESS":"FAILED";
+	public String makePurchaseEntry(Inventory inventory){
+		String query = "INSERT INTO INVENTORYDB.TABLE_X_PURCHASE (x_part_number, x_purchase_count,x_last_updated_time) VALUES (?,?,?)";
+		int result = getJdbcTemplate().update(query, inventory.getPartNumber(),inventory.getPurchaseCount(),inventory.getLastUpdatedTime());
+		return result > 0?"SUCCESS":"FAILED";
 	}
 	//knistane-purchase
+		
+	//knistane-get product details
+	public List<Product> fetchProductEntry(){
+		String query = "SELECT * FROM INVENTORYDB.TABLE_X_PRODUCTS";
+		List<Product> result = getJdbcTemplate().query(query, new ProductResultSetExtractor());
+		return result;
+	}
+	//knistane-get product details
 
 }
