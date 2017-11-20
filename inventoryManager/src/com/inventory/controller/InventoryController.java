@@ -65,7 +65,7 @@ public class InventoryController {
 	    model.addAttribute("lists", productsToDisplay);
         //knistane -fetch product details
 	    //knistane -Profit Calculator
-		model.addAttribute("profitCalculatorUrl", "/inventoryManager/profitCalculatorUrl");
+		model.addAttribute("profitCalculatorUrl", "/inventoryManager/profitCalculator");
 		
 		//knistane -Profit Calculator
         return "dashboard";
@@ -104,7 +104,16 @@ public class InventoryController {
     //knistane -purchase
 	
 	//knistane -Profit Calculator
-	
+    @RequestMapping(value = "/profitCalculator", method=RequestMethod.POST )
+    public String profitCalculator(@ModelAttribute Inventory inventory, Model model) {
+        model.addAttribute("addProductUrl", "/inventoryManager/addProduct");
+        model.addAttribute("product",new Product());
+        model.addAttribute("profitCalculatorUrl", "/inventoryManager/profitCalculator");
+        model.addAttribute("inventory",inventory);
+        double profitLoss = inventoryService.calculateProfit(inventory);
+        model.addAttribute("proLos", profitLoss);
+        return "dashboard";
+    }
 	//knistane -Profit Calculator
     
 }

@@ -31,8 +31,8 @@ public class InventoryDao {
 	
 	//knistane-sell
 	public String makeSellEntry(Inventory inventory){
-		String query = "INSERT INTO INVENTORYDB.TABLE_X_SELL (x_part_number, x_sell_count,x_last_updated_time) VALUES (?,?,?)";
-		int result = getJdbcTemplate().update(query, inventory.getPartNumber(),inventory.getSellCount(),inventory.getLastUpdatedTime());
+		String query = "INSERT INTO INVENTORYDB.TABLE_X_SELL (x_part_number, x_sell_count,x_total_sell_cost,x_last_updated_time,x_calculated_purchase_cost) VALUES (?,?,?,?,?)";
+		int result = getJdbcTemplate().update(query, inventory.getPartNumber(),inventory.getSellCount(),inventory.getTotalSellCost(),inventory.getLastUpdatedTime(),inventory.getTotalpurchaseCost());
 		return result > 0?"SUCCESS":"FAILED";
 	}
 	//knistane-sell
@@ -52,5 +52,20 @@ public class InventoryDao {
 		return result;
 	}
 	//knistane-get product details
+	
+	//knistane calculation of x_calculated_purchase_cost
+	public double fetchPurchaseCostOfPartNumber( String partNumber){
+		String query = "select x_purchase_price from inventorydb.table_x_products where x_part_number = '" + partNumber + "'";
+		double result = getJdbcTemplate().queryForObject(query,Double.class );
+		return result;
+	}
+	//knistane calculation of x_calculated_purchase_cost
 
+	//knistane calculation of x_calculated_purchase_cost
+	public double calculateProfitDao(Inventory inventory){
+		String query = "select sum(x_calculated_purchase_cost) - sum(x_total_sell_cost) from inventorydb.table_x_sell where x_last_updated_time > '" + inventory.getInitialDate() + "'" + " and x_last_updated_time <= '" + inventory.getFinalDate() + "'" ;
+		double result = getJdbcTemplate().queryForObject(query,Double.class );
+		return result;
+	}
+	//knistane calculation of x_calculated_purchase_cost
 }

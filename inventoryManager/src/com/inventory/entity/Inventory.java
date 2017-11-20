@@ -6,12 +6,17 @@ public class Inventory {
 	private String lastUpdatedTime;
 	//knistane-sell
 	private String sellCount;
-	private float totalSellCost;
+	private double totalSellCost;
 	//knistane-sell
 	//knistane-purchase
 	private String purchaseCount;
-	private float totalpurchaseCost;
+	private double totalpurchaseCost;
 	//knistane-purchase
+	
+	//knistane-profit calculator
+	private String initialDate;
+	private String finalDate;
+	//knistane-profit calculator
 	public String getPartNumber(){
 		return partNumber;
 	}
@@ -27,13 +32,13 @@ public class Inventory {
 	    setLastUpdatedTime();
 	}
 	
-	public float getTotalSellCost() {
+	public double getTotalSellCost() {
 	    return totalSellCost;
 	}
 	
-	//public void setTotalSellCost(float totalSellCost) {
-	//    this.totalSellCost = getSellCount()*getSellingPrice();
-	//}
+	public void setTotalSellCost(double totalSellCost) {
+	    this.totalSellCost = totalSellCost;
+	}
 	
 	public String getLastUpdatedTime() {
 	    return lastUpdatedTime;
@@ -51,11 +56,23 @@ public class Inventory {
 		this.purchaseCount = purchaseCount;
 		setLastUpdatedTime();
 	}
-	public float getTotalpurchaseCost() {
+	public double getTotalpurchaseCost() {
 		return totalpurchaseCost;
 	}
-	public void setTotalpurchaseCost(float totalpurchaseCost) {
+	public void setTotalpurchaseCost(double totalpurchaseCost) {
 		this.totalpurchaseCost = totalpurchaseCost;
 	}
 //knistane-purchase
+	public String getInitialDate() {
+		return initialDate;
+	}
+	public void setInitialDate(String initialDate) {
+		this.initialDate = initialDate;
+	}
+	public String getFinalDate() {
+		return finalDate;
+	}
+	public void setFinalDate(String finalDate) {
+		this.finalDate = finalDate;
+	}
 }

@@ -146,6 +146,10 @@
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search your products by Name" title="Type in a product">
 
 <div>
+<p> profit is ${proLos} </p>>
+</div>
+
+<div>
 	<table id="myTable">
 		<tr class="header">
 			<th style="width: 25%;">NAME</th>
@@ -189,6 +193,7 @@
 							<form:input path="purchaseCount" type="text" class="form-control" id="purchaseCount" />
 							<form:errors path="purchaseCount" class="control-label" />
 						</div>
+						var="listValue" items="${lists}"
 						<button type="submit" class="btn btn-success">SAVE</button>
 					</form:form>
 				</div>
@@ -220,6 +225,11 @@
 							<form:input path="sellCount" type="text" class="form-control" id="sellCount" />
 							<form:errors path="sellCount" class="control-label" />
 						</div>
+						<div class="form-group">
+						<p> TOTAL SELL COST</p>
+							<form:input path="totalSellCost" type="text" class="form-control" id="totalSellCost" />
+							<form:errors path="totalSellCost" class="control-label" />
+						</div>
 						<button type="submit" class="btn btn-success">SAVE</button>
 					</form:form>
 				</div>
@@ -230,7 +240,35 @@
 		</div>
 	</div>
 	<%--Fin knistane sell--%>
-		
+		<%--INICIO knistane profit calculator--%>
+	<div id="myModal4" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">PROFIT CALCULATOR</h4>
+				</div>
+				<div class="modal-body">
+					<form:form class="form-horizontal" method="post" modelAttribute="inventory" action="${profitCalculatorUrl}">
+						<div class="form-group">
+						<p> SELECT INITIAL DATE</p>
+							<%-- <form:input path="partNumber" type="text" class="form-control" id="partNumber"  /> --%>
+							<form:input path="initialDate" type="date" data-date-inline-picker="true" class="form-control" id="initialDate" />
+							<form:errors path="initialDate" class="control-label" />
+						</div>
+						<div class="form-group">
+						<p> SELECT FINAL DATE</p>
+							<form:input path="finalDate" type="date" data-date-inline-picker="true" class="form-control" id="finalDate" />
+							<form:errors path="finalDate" class="control-label" />
+						</div>
+						<button type="submit" class="btn btn-success">SAVE</button>
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%--Fin knistane profit calculator--%>
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
